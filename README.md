@@ -1,3 +1,5 @@
+![PHP QA Workflow](https://github.com/settermjd/mezzio-twilio-webhook-validator/actions/workflows/php-qa.yml/badge.svg)
+
 <!-- markdownlint-disable MD013 -->
 # Mezzio Twilio Webhook Validator
 
