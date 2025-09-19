@@ -10,6 +10,7 @@ use Laminas\Diactoros\ServerRequestFactory;
 use Laminas\Diactoros\Stream;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -21,6 +22,7 @@ use Twilio\Security\RequestValidator;
 use function hash;
 use function http_build_query;
 
+#[CoversClass(WebhookValidationMiddleware::class)]
 class WebhookValidationMiddlewareTest extends TestCase
 {
     /** @var string[] */
