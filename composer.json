@@ -51,7 +51,6 @@
         "test-coverage-html": "phpunit --colors=always --coverage-html tests/output/"
     },
     "scripts-descriptions": {
-        "clear-config-cache": "Clears merged config cache. Required for config changes to be applied.",
         "static-analysis": "Run static analysis tool PHPStan."
     }
 }
