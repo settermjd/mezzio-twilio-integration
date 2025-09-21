@@ -1,13 +1,13 @@
-# laminas sendgrid integration
+# Mezzio Twilio Integration
 
-This is a small package that simplifies integrating Twilio into Laminas and Mezzio projects.
+This is a small package that simplifies integrating Twilio into Mezzio projects.
 
 ## Installation
 
 Install this package using Composer:
 
 ```bash
-composer require settermjd/laminas-twilio-integration
+composer require settermjd/mezzio-twilio-integration
 ```
 
 ## Configuration
