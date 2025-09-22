@@ -36,7 +36,7 @@ class WebhookValidationMiddlewareTest extends TestCase
     public function setUp(): void
     {
         $this->config           = [
-            'TWILIO_AUTH_TOKEN' => '11111111111111111111111111111111',
+            'auth_token' => '11111111111111111111111111111111',
         ];
         $this->baseUri          = 'https://example.org';
         $this->directory        = vfsStream::setup(
@@ -45,7 +45,7 @@ class WebhookValidationMiddlewareTest extends TestCase
             ]
         );
         $this->handler          = $this->createMock(RequestHandlerInterface::class);
-        $this->requestValidator = new RequestValidator($this->config['TWILIO_AUTH_TOKEN']);
+        $this->requestValidator = new RequestValidator($this->config['auth_token']);
     }
 
     /**

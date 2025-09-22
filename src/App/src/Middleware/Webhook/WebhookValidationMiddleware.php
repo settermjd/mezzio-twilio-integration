@@ -35,11 +35,14 @@ readonly final class WebhookValidationMiddleware implements MiddlewareInterface
      */
     public function __construct(array $config = [])
     {
-        if (! array_key_exists('TWILIO_AUTH_TOKEN', $config) || $config['TWILIO_AUTH_TOKEN'] === '') {
+        if (
+            ! array_key_exists('auth_token', $config)
+            || $config['auth_token'] === ''
+        ) {
             throw new InvalidArgumentException('Twilio Auth Token is missing or empty.');
         }
 
-        $this->validator = new RequestValidator($config['TWILIO_AUTH_TOKEN']);
+        $this->validator = new RequestValidator($config['auth_token']);
     }
 
     /**
