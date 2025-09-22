@@ -1,9 +1,8 @@
 site:
   title: Mezzio Twilio Integration Docs
-  start_page: component-b::index.adoc 
 content:
   sources: 
-  - url: ../
+  - url: ./
     branches: HEAD
     start_path: docs
 asciidoc:
