@@ -55,23 +55,34 @@ class WebhookValidationMiddlewareFactoryTest extends TestCase
         $this->assertInstanceOf(WebhookValidationMiddleware::class, $factory($container));
     }
 
+    /**
+     * @param array<string, string> $config
+     */
     #[TestWith([[]], 'Test when the config is empty')]
-    #[TestWith([[
-        'twilio' => null,
-    ]], 'Test when the Twilio config is null')]
-    #[TestWith([[
-        'twilio' => [],
-    ]], 'Test when the Twilio config is empty')]
-    #[TestWith([[
-        'twilio' => [
-            'account_sid' => null,
+    #[TestWith([
+        [
+            'twilio' => null,
         ],
-    ]], 'Test when the Twilio config is missing the auth token')]
-    #[TestWith([[
-        'twilio' => [
-            'auth_token' => '',
+    ], 'Test when the Twilio config is null')]
+    #[TestWith([
+        [
+            'twilio' => [],
         ],
-    ]], 'Test with an empty auth token in the Twilio config')]
+    ], 'Test when the Twilio config is empty')]
+    #[TestWith([
+        [
+            'twilio' => [
+                'account_sid' => null,
+            ],
+        ],
+    ], 'Test when the Twilio config is missing the auth token')]
+    #[TestWith([
+        [
+            'twilio' => [
+                'auth_token' => '',
+            ],
+        ],
+    ], 'Test with an empty auth token in the Twilio config')]
     public function testThrowsExceptionIfTwilioConfigIsNotSetupInConfigService(array|null $config): void
     {
         $this->expectException(InvalidConfigException::class);
