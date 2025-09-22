@@ -1,16 +1,49 @@
 {
-    "name": "settermjd/laminas-twilio-integration",
-    "description": "A small package to simplify integrating Twilio into a Laminas or Mezzio project",
+    "name": "settermjd/mezzio-twilio-integration",
+    "description": "A small package to simplify integrating Twilio into Mezzio project",
     "type": "library",
-    "license": "BSD-3-Clause",
+    "license": "GPL-3.0-or-later",
+    "minimum-stability": "stable",
+    "support": {
+        "docs": "https://github.com/settermjd/mezzio-twilio-integration/docs",
+        "issues": "https://github.com/settermjd/mezzio-twilio-integration/issues"
+    },
+    "require": {
+        "php": "~8.3||~8.4",
+        "composer/composer": "^2.5",
+        "psr/container": "^1.0.0 || ^2.0.0",
+        "psr/http-server-middleware": "^1.0",
+        "symfony/filesystem": "^6.2",
+        "twilio/sdk": "^8.8",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.21",
+        "friendsofphp/php-cs-fixer": "^3.87",
+        "laminas/laminas-coding-standard": "^3.1",
+        "laminas/laminas-component-installer": "^3.5",
+        "laminas/laminas-diactoros": "^3.6",
+        "mikey179/vfsstream": "^1.6",
+        "phpstan/phpdoc-parser": "^2.3",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpunit/phpunit": "^12.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "laminas/laminas-component-installer": true
+        },
+        "sort-packages": true
+    },
     "autoload": {
         "psr-4": {
-            "Laminas\\Twilio\\": "src/App/src/"
+            "Settermjd\\Mezzio\\Twilio\\": "src/App/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LaminasTest\\Twilio\\": "test/"
+            "Settermjd\\MezzioTest\\Twilio\\": "test/"
         }
     },
     "authors": [
@@ -19,45 +52,22 @@
             "email": "matthew@matthewsetter.com"
         }
     ],
-    "require": {
-        "php": "^8.2.0",
-        "psr/container": "^1.0.0 || ^2.0.0",
-        "composer/composer": "^2.5",
-        "symfony/filesystem": "^6.2",
-        "twilio/sdk": "^7.2"
-    },
-    "require-dev": {
-        "laminas/laminas-coding-standard": "^2.5",
-        "squizlabs/php_codesniffer": "^3.7",
-        "vimeo/psalm": "^5.9",
-        "psalm/plugin-phpunit": "^0.18.4",
-        "phpunit/phpunit": "^10.1",
-        "fakerphp/faker": "^1.21",
-        "mikey179/vfsstream": "^1.6"
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+    "extra": {
+        "laminas": {
+            "config-provider": "Laminas\\Twilio\\ConfigProvider"
         }
     },
     "scripts": {
         "check": [
             "@cs-check",
+            "@static-analysis",
             "@test"
         ],
-        "cs-check": "phpcs",
-        "cs-fix": "phpcbf",
-        "static-analysis": "psalm --shepherd --stats",
+        "cs-check": "php -d xdebug.mode=off vendor/bin/phpcs",
+        "cs-fix": "php -d xdebug.mode=off vendor/bin/phpcbf",
+        "static-analysis": "php -d xdebug.mode=off vendor/bin/phpstan analyse --memory-limit=256M -c phpstan.neon",
         "test": "phpunit --colors=always",
-        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
-    },
-    "support": {
-        "docs": "https://github.com/settermjd/laminas-twilio-integration/docs",
-        "issues": "https://github.com/settermjd/laminas-twilio-integration/issues"
-    },
-    "extra": {
-        "laminas": {
-            "config-provider": "Laminas\\Twilio\\ConfigProvider"
-        }
+        "test-coverage-clover": "phpunit --colors=always --coverage-clover clover.xml",
+        "test-coverage-html": "phpunit --colors=always --coverage-html tests/output/"
     }
 }
