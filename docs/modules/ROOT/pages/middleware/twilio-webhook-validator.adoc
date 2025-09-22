@@ -1,0 +1,81 @@
+= The Twilio Webhook Validator
+
+This is a {psr-15-url}[PSR-15-compliant middleware] for {twilio-webhook-security-url}[validating Twilio webhooks] in {mezzio-url}[Mezzio] applications.
+
+== What are Twilio Webhooks?
+
+Quoting {twilio-webhooks-url}[Twilio's documentation]:
+
+[.excerpt,Twilio,Webhooks: an Introduction]
+____
+Webhooks are user-defined HTTP callbacks. They are triggered by some event in a web application and can facilitate integrating different applications or third-party APIs, like Twilio.
+
+Twilio uses webhooks to let your application know when events happen, such as receiving an SMS message or getting an incoming phone call.
+When the event occurs, Twilio makes an HTTP request (usually a POST or a GET) to the URL you configured for the webhook.
+
+Twilio's request will include details of the event such as the incoming phone number or the body of an incoming message.
+Many other modern web services like GitHub and Slack also make use of webhooks to communicate events.
+____
+
+== What is Middleware?
+
+Quoting {psr-15-url}#12-middleware[PSR-15]:
+
+[.excerpt,PHP Fig, PSR-15: HTTP Server Request Handlers]
+____
+A middleware component is an individual component participating, often together with other middleware components, in the processing of an incoming request and the creation of a resulting response, as defined by {psr-7-url}[PSR-7].
+
+A middleware component MAY create and return a response without delegating to a request handler, if sufficient conditions are met.
+____
+
+== How the Middleware Works
+
+The middleware uses the `RequestValidator` class from {twilio-php-helper-librar-url}[Twilio's PHP Helper Library] to validate the request:
+It does this using the `RequestValidator` class and a combination of:
+
+- *The request's `X-Twilio-Signature` header.*
+  This is a request signature from Twilio.
+  It is created using the parameters sent in the webhook (either GET or POST) and the exact URL your application {twilio-webhook-url-configuration}[supplied to Twilio].
+  The signature uses the {hmac-sha1-url}[HMAC-SHA1] hashing algorithm with your Twilio account's Auth Token as the secret key.
+- *The URL* Twilio sent the webhook to
+- *All parameters* sent by Twilio
+
+== How to Use the Middleware
+
+There are two ways to use the middleware:
+
+- xref:_add_it_to_every_route[You can add it to every route]
+- xref:_add_it_to_individual_routes[You can add it to individual routes]
+
+=== Add it to Every Route
+
+To do this, in _config/pipeline.php_, add the following **before** `DispatchMiddleware` is piped, as in the example below.
+
+[source,php]
+----
+use Settermjd\Mezzio\Twilio\WebhookValidator\Middleware\WebhookValidatorMiddleware;
+
+// ...
+
+$app->pipe(WebhookValidatorMiddleware::class);
+----
+
+=== Add it to Individual Routes
+
+To do this, configure the route's middleware as an array, with `WebhookValidatorMiddleware` listed before the route's handler, as in the example below.
+
+[source,php]
+----
+use Settermjd\Mezzio\Twilio\WebhookValidator\Middleware\WebhookValidatorMiddleware;
+
+// ...
+
+$app->get(
+    '/contact',
+    [
+        WebhookValidatorMiddleware::class,
+        App\Handler\ContactHandler::class,
+    ],
+    'contact'
+);
+----

@@ -1,0 +1,30 @@
+site:
+  title: Mezzio Twilio Integration Docs
+  start_page: component-b::index.adoc 
+content:
+  sources: 
+  - url: ../
+    branches: HEAD
+    start_path: docs
+asciidoc:
+  attributes:
+    composer-url: https://getcomposer.org
+    hmac-sha1-url: https://en.wikipedia.org/wiki/HMAC
+    laminas-configprovider-url: https://docs.laminas.dev/laminas-config-aggregator/config-providers/
+    mezzio-url: https://docs.mezzio.dev/mezzio/
+    new-issue-url: https://github.com/settermjd/mezzio-twilio-integration/issues
+    php-url: https://www.php.net
+    phpdotenv-url: https://github.com/vlucas/phpdotenv
+    prs-url: https://github.com/settermjd/mezzio-twilio-integration/issues
+    psr-7-url: https://www.php-fig.org/psr/psr-7/
+    psr-15-url: https://www.php-fig.org/psr/psr-15/
+    try-twilio-url: https://twilio.com/try-twilio
+    twilio-console-url: https://console.twilio.com
+    twilio-php-helper-librar-url: https://www.twilio.com/docs/libraries/reference/twilio-php/
+    twilio-webhooks-url: https://www.twilio.com/docs/usage/webhooks
+    twilio-webhook-url-configuration: https://www.twilio.com/docs/usage/webhooks/getting-started-twilio-webhooks#configure-your-public-url-with-twilio
+    twilio-webhook-security-url: https://www.twilio.com/docs/usage/webhooks/webhooks-security
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true

@@ -1,0 +1,46 @@
+= Mezzio Twilio Integration
+
+This package aims to simplify integrating Twilio into your {mezzio-url}[Mezzio] project, and goes to a lot of effort to make doing so as simple as possible.
+
+== Requirements
+
+To use the application, you'll need the following:
+
+* A Twilio account (either free or paid).
+  {try-twilio-url}[Create an account] if you don't already have one.
+* {php-url}[PHP] 8.3 or above
+* {composer-url}[Composer] installed globally
+
+== About
+
+The package:
+
+- Registers a Twilio Rest Client in the application's DI Container
+- Provides xref:middleware/twilio-webhook-validator.adoc[a middleware class] that validates webhooks requests from Twilio
+
+== Installation
+
+Install the package using Composer, by running the command below:
+
+[source,bash]
+----
+composer require settermjd/mezzio-twilio-integration
+----
+
+=== Set the required environment variables
+
+The package requires two environment variables to be set: `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN`.
+To do that:
+
+image::mezzio-twilio-integration::twilio-console-account-info-panel.png[The Account Info panel in the Twilio Console's main dashboard, where the Account SID and Twilio phone number have been redacted]
+
+* Log in to [the Twilio Console][twilio-console] in your browser of choice
+* Copy the *Account SID* and *Auth Token* from the *Account Info* panel in the Console's main dashboard;
+  These are required to initialise the Twilio Rest Client provided registered the package in the application's DI Container.
+* Copy _.env.example_ as _.env_
+* In _.env_, paste the two values as the values for `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN`, respectively
+
+=== Configuration
+
+Copy the default configuration file, _config/autoload/twilio.global.php_, to _config/autoload_.
+This file sets two configuration variables, `account_sid` and `auth_token`, in the config's `twilio` namespace, from the respective environment variables.
