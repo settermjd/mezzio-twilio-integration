@@ -9,6 +9,10 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Settermjd\Mezzio\Twilio\Exception\InvalidConfigException;
 
+use function array_key_exists;
+use function assert;
+use function is_array;
+
 class WebhookValidationMiddlewareFactory
 {
     /**
@@ -23,6 +27,7 @@ class WebhookValidationMiddlewareFactory
         }
 
         $config = $container->get('config');
+        assert(is_array($config));
         if (
             array_key_exists('twilio', $config)
             && is_array($config['twilio'])
