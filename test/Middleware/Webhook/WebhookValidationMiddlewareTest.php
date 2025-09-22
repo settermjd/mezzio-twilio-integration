@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Settermjd\Mezzio\Twilio\WebhookValidatorTest\Middleware;
+namespace Settermjd\MezzioTest\Twilio\Middleware\Webhook;
 
 use InvalidArgumentException;
 use Laminas\Diactoros\Response\TextResponse;
@@ -15,8 +15,8 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Settermjd\Mezzio\Twilio\WebhookValidator\Exception\InvalidWebhookSignatureException;
-use Settermjd\Mezzio\Twilio\WebhookValidator\Middleware\WebhookValidationMiddleware;
+use Settermjd\Mezzio\Twilio\Exception\InvalidWebhookSignatureException;
+use Settermjd\Mezzio\Twilio\Middleware\Webhook\WebhookValidationMiddleware;
 use Twilio\Security\RequestValidator;
 
 use function hash;

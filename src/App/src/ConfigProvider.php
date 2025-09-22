@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Laminas\Twilio;
+namespace Settermjd\Mezzio\Twilio;
 
-use Laminas\Twilio\Factory\TwilioRestClientFactory;
+use Settermjd\Mezzio\Twilio\Factory\TwilioRestClientFactory;
 use Twilio\Rest\Client;
 
 class ConfigProvider

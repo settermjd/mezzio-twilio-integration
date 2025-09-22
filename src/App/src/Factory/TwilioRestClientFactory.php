@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laminas\Twilio\Factory;
+namespace Settermjd\Mezzio\Twilio\Factory;
 
 use InvalidArgumentException;
 use Psr\Container\ContainerInterface;

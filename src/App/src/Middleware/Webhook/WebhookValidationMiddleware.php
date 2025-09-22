@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Settermjd\Mezzio\Twilio\WebhookValidator\Middleware;
+namespace Settermjd\Mezzio\Twilio\Middleware\Webhook;
 
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Settermjd\Mezzio\Twilio\WebhookValidator\Exception\InvalidWebhookSignatureException;
+use Settermjd\Mezzio\Twilio\Exception\InvalidWebhookSignatureException;
 use Twilio\Security\RequestValidator;
 
 use function array_key_exists;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Settermjd\Mezzio\Twilio\WebhookValidator\Exception;
+namespace Settermjd\Mezzio\Twilio\Exception;
 
 use Exception;
 

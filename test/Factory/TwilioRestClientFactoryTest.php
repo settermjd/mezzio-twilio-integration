@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace LaminasTest\SendGrid\Factory;
+namespace Settermjd\MezzioTest\Twilio\Factory;
 
 use Faker\Factory;
 use InvalidArgumentException;
-use Laminas\Twilio\Factory\TwilioRestClientFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
+use Settermjd\Mezzio\Twilio\Factory\TwilioRestClientFactory;
 
 class TwilioRestClientFactoryTest extends TestCase
 {
