@@ -6,11 +6,14 @@ namespace Settermjd\MezzioTest\Twilio\Factory;
 
 use Faker\Factory;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Settermjd\Mezzio\Twilio\Factory\TwilioRestClientFactory;
 
+#[CoversClass(TwilioRestClientFactory::class)]
 class TwilioRestClientFactoryTest extends TestCase
 {
     private ContainerInterface&MockObject $container;
@@ -20,7 +23,7 @@ class TwilioRestClientFactoryTest extends TestCase
         $this->container = $this->createMock(ContainerInterface::class);
     }
 
-    public function testCanInstantiateSendGridObjectWhenCorrectConfigurationIsAvailabl(): void
+    public function testCanInstantiateSendGridObjectWhenCorrectConfigurationIsAvailable(): void
     {
         $faker      = Factory::create();
         $accountSid = $faker->word();
@@ -51,8 +54,9 @@ class TwilioRestClientFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidConfigurationDataProvider
+     * @param string[]|null $configuration
      */
+    #[DataProvider('invalidConfigurationDataProvider')]
     public function testCannotInstantiateSendGridObjectWithoutAValidConfiguration(?array $configuration = null): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -73,6 +77,9 @@ class TwilioRestClientFactoryTest extends TestCase
         $factory($this->container);
     }
 
+    /**
+     * @return array<int,array<int,null|array<mixed>>>
+     */
     public static function invalidConfigurationDataProvider(): array
     {
         return [
@@ -125,7 +132,7 @@ class TwilioRestClientFactoryTest extends TestCase
         ];
     }
 
-    public function testCannotInstantiateSendGridObjectIfApplicationConfigurationIsMissing(): void
+    public function testCannotInstantiateTwilioRestClientFactoryIfApplicationConfigurationIsMissing(): void
     {
         $this->expectException(InvalidArgumentException::class);
 

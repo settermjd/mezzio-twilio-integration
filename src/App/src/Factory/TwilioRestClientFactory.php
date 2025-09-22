@@ -9,12 +9,14 @@ use Psr\Container\ContainerInterface;
 use Twilio\Rest\Client;
 
 use function array_key_exists;
+use function assert;
 use function is_array;
+use function is_string;
 
 /**
  * This class simplifies instantiating a Twilio Rest Client object from the application's configuration provided
  *
- * The __invoke method expects the application's conrfiguration to have at least the following structure:
+ * The __invoke method expects the application's configuration to have at least the following structure:
  *
  * [
  *     'twilio' => [
@@ -32,7 +34,6 @@ class TwilioRestClientFactory
         }
 
         $configuration = $container->get('config');
-
         if (
             ! is_array($configuration)
             || ! array_key_exists('twilio', $configuration)
