@@ -51,11 +51,11 @@ class TwilioRestClientFactory
             );
         }
 
-        [
-            'account_sid' => $accountSid,
-            'auth_token'  => $authToken,
-        ] = $configuration['twilio'];
-
-        return new Client((string) $accountSid, (string) $authToken);
+        assert(is_string($configuration['twilio']['account_sid']));
+        assert(is_string($configuration['twilio']['auth_token']));
+        return new Client(
+            $configuration['twilio']['account_sid'],
+            $configuration['twilio']['auth_token']
+        );
     }
 }
