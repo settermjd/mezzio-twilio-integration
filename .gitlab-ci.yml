@@ -5,6 +5,7 @@ pages:
   interruptible: true
   script:
     - antora --fetch --redirect-facility=gitlab --to-dir=public antora-playbook.yml
+  pages: true
   artifacts:
     paths:
       - public
