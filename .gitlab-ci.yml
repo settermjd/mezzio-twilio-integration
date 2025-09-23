@@ -1,14 +1,10 @@
 image:
-  name: antora/antora:3.1.7
-pages:
+  name: node:22-alpine
+build-site:
   stage: deploy
   rules:
-  - if: $CI_PROJECT_PATH == 'antora/demo/docs-site' && $CI_COMMIT_BRANCH == 'main'
-  cache:
-    paths:
-    - .cache
+  - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
-  - antora --fetch --cache-dir .cache/antora --redirect-facility gitlab --to-dir public --url $CI_PAGES_URL antora-playbook.yml
-  artifacts:
-    paths:
-    - public
+  - npx -y antora --redirect-facility gitlab --to-dir public antora-playbook.yml
+  pages:
+    publish: public
