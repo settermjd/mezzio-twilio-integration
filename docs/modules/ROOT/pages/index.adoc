@@ -32,7 +32,7 @@ composer require settermjd/mezzio-twilio-integration
 The package requires two environment variables to be set: `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN`.
 To do that:
 
-image::mezzio-twilio-integration::twilio-console-account-info-panel.png[The Account Info panel in the Twilio Console's main dashboard, where the Account SID and Twilio phone number have been redacted]
+image::docs::twilio-console-account-info-panel.png[The Account Info panel in the Twilio Console's main dashboard, where the Account SID and Twilio phone number have been redacted]
 
 * Log in to [the Twilio Console][twilio-console] in your browser of choice
 * Copy the *Account SID* and *Auth Token* from the *Account Info* panel in the Console's main dashboard;

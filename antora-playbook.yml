@@ -1,5 +1,6 @@
 site:
-  title: Mezzio Twilio Integration Docs
+  title: Mezzio Twilio Integration
+  start_page: docs::index.adoc
 content:
   sources: 
   - url: ./
@@ -27,9 +28,3 @@ ui:
   bundle:
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
-  supplemental_files:
-    - path: ui.yml
-      contents: |
-        static_files:
-        - .nojekyll
-    - path: .nojekyll
