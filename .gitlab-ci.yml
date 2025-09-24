@@ -1,10 +1,10 @@
 image:
   name: node:22-alpine
-build-site:
+pages:
   stage: deploy
   rules:
   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
   - npx -y antora --redirect-facility gitlab --to-dir public antora-playbook.yml
   pages:
-    publish: public/mezzio-twilio-integration/1.0/
+    publish: public
