@@ -7,4 +7,4 @@ build-site:
   script:
   - npx -y antora --redirect-facility gitlab --to-dir public antora-playbook.yml
   pages:
-    publish: public
+    publish: public/mezzio-twilio-integration/1.0/
