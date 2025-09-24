@@ -1,6 +1,7 @@
 site:
   title: Mezzio Twilio Integration
   start_page: docs::index.adoc
+  url: /mezzio-twilio-integration
 content:
   sources: 
   - url: ./
