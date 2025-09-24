@@ -1,6 +1,6 @@
 image:
   name: node:22-alpine
-pages:
+create-pages:
   stage: deploy
   rules:
   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
