@@ -13,5 +13,7 @@ composer require settermjd/mezzio-twilio-integration
 
 ## Usage
 
-Online documentation will be available shortly.
-In the meantime, you can find it in the [docs](./docs) directory.
+Check out [the documentation][the-docs] for full details about how to use the project.
+
+<!-- Links -->
+[the-docs]: https://settermjd.github.io/mezzio-twilio-integration/docs/1/index.html.
