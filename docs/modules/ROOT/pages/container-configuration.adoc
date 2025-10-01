@@ -1,0 +1,6 @@
+= Container Configuration
+
+The package registers two services with the application's (DI) container:
+
+* A {twilio-rest-client-url}[Twilio Rest Client] under the key `\Twilio\Rest\Client`
+* xref:middleware/twilio-webhook-validator.adoc[The webhook validation middleware] under the key `\Settermjd\Mezzio\Twilio\Middleware\Webhook\WebhookValidationMiddleware`

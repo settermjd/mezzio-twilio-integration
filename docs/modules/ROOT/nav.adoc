@@ -1,1 +1,3 @@
-* xref:middleware/twilio-webhook-validator.adoc[]
+* xref:container-configuration.adoc[Container Configuration]
+* Middleware
+** xref:middleware/twilio-webhook-validator.adoc[]
