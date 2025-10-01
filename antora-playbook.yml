@@ -22,6 +22,7 @@ asciidoc:
     try-twilio-url: https://twilio.com/try-twilio
     twilio-console-url: https://console.twilio.com
     twilio-php-helper-librar-url: https://www.twilio.com/docs/libraries/reference/twilio-php/
+    twilio-rest-client-url: https://github.com/twilio/twilio-php/blob/main/src/Twilio/Rest/Client.php
     twilio-webhooks-url: https://www.twilio.com/docs/usage/webhooks
     twilio-webhook-url-configuration: https://www.twilio.com/docs/usage/webhooks/getting-started-twilio-webhooks#configure-your-public-url-with-twilio
     twilio-webhook-security-url: https://www.twilio.com/docs/usage/webhooks/webhooks-security
