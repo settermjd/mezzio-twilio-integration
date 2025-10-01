@@ -10,16 +10,15 @@
     },
     "require": {
         "php": "~8.3||~8.4",
-        "composer/composer": "^2.5",
         "psr/container": "^1.0.0 || ^2.0.0",
         "psr/http-server-middleware": "^1.0",
-        "symfony/filesystem": "^6.2",
         "twilio/sdk": "^8.8",
         "vlucas/phpdotenv": "^5.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.21",
         "friendsofphp/php-cs-fixer": "^3.87",
+        "icanhazstring/composer-unused": "^0.9.5",
         "laminas/laminas-coding-standard": "^3.1",
         "laminas/laminas-component-installer": "^3.5",
         "laminas/laminas-diactoros": "^3.6",
