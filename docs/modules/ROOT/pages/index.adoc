@@ -16,7 +16,7 @@ To use the application, you'll need the following:
 The package:
 
 - Registers a Twilio Rest Client in the application's DI Container
-- Provides xref:middleware/twilio-webhook-validator.adoc[a middleware class] that validates webhooks requests from Twilio
+- Provides xref:middleware/event-streams-webhook-validator.adoc[a middleware class] that validates webhooks requests from Twilio
 
 == Installation
 

@@ -1,0 +1,80 @@
+= The Event Streams Webhook Validator
+:link-shortening-url: https://www.twilio.com/docs/messaging/features/link-shortening
+:mezzio-error-handler-url: https://docs.mezzio.dev/mezzio/v3/features/error-handling/
+:middleware101-url: https://getlaminas.org/blog/2025-04-08-mezzio101-what-defines-a-middleware-architecture.html
+:validate-event-streams-webhooks-php-url: https://www.twilio.com/en-us/blog/developers/tutorials/integrations/validate-twilio-event-streams-webhooks-php
+:verify-verifications-url: https://www.twilio.com/docs/verify/api/verification
+:event-streams-webhooks-url: https://www.twilio.com/docs/events/webhook-quickstart
+:middleware-class-name: EventStreamsWebhookValidatorMiddleware
+
+While you can write the code yourself to validate {event-streams-webhooks-url}[Event Streams Webhooks], the `{middleware-class-name}` does it for you.
+It is a {psr-15-url}[PSR-15-compliant middleware] for {mezzio-url}[Mezzio] applications.
+All you need to do is to add it to your middleware or route pipeline.
+
+== What are Event Streams Webhooks?
+
+Event Streams Webhooks let your application know when events happen, such as a {link-shortening-url}[shortened link] was clicked, an SMS was successfully delivered, read, or sent, or a {verify-verifications-url}[verification] was approved.
+
+These webhooks include comprehensive details of the event, such as the body of an incoming message, the phone or WhatsApp number it was sent from, and the event's name. 
+With that information, your Mezzio application can become extremely flexible and powerful.
+
+Just like any other request, though, your Mezzio applications should validate _Event Streams Webhooks_ so that you know that they came from Twilio — and *_not_* a malicious actor.
+
+Gladly, Twilio makes this almost trivial as each webhook request is signed. 
+This signature, in combination with your account's Auth Token, the body of the webhook, and the request URL, can be used to verify that the webhook came from Twilio and that it has not been tampered with.
+
+== How the Middleware Works
+
+The middleware uses the `RequestValidator` class from {twilio-php-helper-librar-url}[Twilio's PHP Helper Library] to validate the request, using a combination of:
+
+- *The request's `X-Twilio-Signature` header.*
+  This is a request signature from Twilio.
+  It is created using the parameters sent in the webhook (either GET or POST) and the exact URL your application {twilio-webhook-url-configuration}[supplied to Twilio].
+  The signature uses the {hmac-sha1-url}[HMAC-SHA1] hashing algorithm with your Twilio account's Auth Token as the secret key.
+- *The URL* Twilio sent the _Event Streams Webhook_ to
+- The body of the request (if there was one)
+
+If the request _successfully_ validates, the request continues through to the next stage in {middleware101-url}[the request pipeline].
+If the request _fails_ validation, an exception is thrown, which will be handled by {mezzio-error-handler-url}[Mezzio's Error Handler].
+
+TIP: {validate-event-streams-webhooks-php-url}[There's an in-depth tutorial on the Twilio blog] if you want to learn more about the validation process.
+
+== How to Use the Middleware
+
+There are two ways to use the middleware:
+
+- xref:_add_it_to_every_route[You can add it to every route]
+- xref:_add_it_to_individual_routes[You can add it to individual routes]
+
+=== Add it to Every Route
+
+To do this, in _config/pipeline.php_, add the following **before** `DispatchMiddleware` is piped, as in the example below.
+
+[source,php,subs="attributes"]
+----
+use Settermjd\Mezzio\Twilio\WebhookValidator\Middleware\Webhooks\EventStreamsWebhookValidatorMiddleware;
+
+// ...
+
+$app->pipe({middleware-class-name}::class);
+----
+
+=== Add it to Individual Routes
+
+To do this, configure the route's middleware as an array, with `{middleware-class-name}` listed before the route's handler, as in the example below.
+
+[source,php,subs="attributes"]
+----
+use Settermjd\Mezzio\Twilio\WebhookValidator\Middleware\Webhooks\EventStreamsWebhookValidatorMiddleware;
+
+// ...
+
+$app->get(
+    '/contact',
+    [
+        {middleware-class-name}::class,
+        App\Handler\ContactHandler::class,
+    ],
+    'contact'
+);
+----
