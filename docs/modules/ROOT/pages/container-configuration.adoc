@@ -2,5 +2,14 @@
 
 The package registers two services with the application's (DI) container:
 
-* A {twilio-rest-client-url}[Twilio Rest Client] under the key `\Twilio\Rest\Client`
-* xref:middleware/twilio-webhook-validator.adoc[The webhook validation middleware] under the key `\Settermjd\Mezzio\Twilio\Middleware\Webhook\WebhookValidationMiddleware`
+[cols="1,1",options="header",stripes=even]
+|===
+|Service
+|Service Name
+
+|A {twilio-rest-client-url}[Twilio Rest Client]
+|`\Twilio\Rest\Client`
+
+|xref:middleware/event-streams-webhook-validator.adoc[The Event Streams Webhooks validation middleware]
+|`\Settermjd\Mezzio\Twilio\Middleware\Webhook\EventStreamsWebhookValidationMiddleware`
+|===

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Settermjd\MezzioTest\Twilio\Middleware\Webhook;
+namespace Settermjd\MezzioTest\Twilio\Middleware\Webhooks;
 
 use InvalidArgumentException;
 use Laminas\Diactoros\Response\TextResponse;
@@ -16,14 +16,14 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Settermjd\Mezzio\Twilio\Exception\InvalidWebhookSignatureException;
-use Settermjd\Mezzio\Twilio\Middleware\Webhook\WebhookValidationMiddleware;
+use Settermjd\Mezzio\Twilio\Middleware\Webhooks\EventStreamsWebhookValidationMiddleware;
 use Twilio\Security\RequestValidator;
 
 use function hash;
 use function http_build_query;
 
-#[CoversClass(WebhookValidationMiddleware::class)]
-class WebhookValidationMiddlewareTest extends TestCase
+#[CoversClass(EventStreamsWebhookValidationMiddleware::class)]
+class EventStreamsWebhookValidationMiddlewareTest extends TestCase
 {
     /** @var string[] */
     private array $config;
@@ -89,7 +89,7 @@ class WebhookValidationMiddlewareTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Twilio Auth Token is missing or empty.');
 
-        (new WebhookValidationMiddleware([]))
+        (new EventStreamsWebhookValidationMiddleware([]))
             ->process(
                 $this->getServerRequest([]),
                 $this->handler
@@ -101,7 +101,7 @@ class WebhookValidationMiddlewareTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("The request does not contain a Twilio signature header.");
 
-        (new WebhookValidationMiddleware($this->config))
+        (new EventStreamsWebhookValidationMiddleware($this->config))
             ->process(
                 $this->getServerRequest([]),
                 $this->handler
@@ -122,7 +122,7 @@ class WebhookValidationMiddlewareTest extends TestCase
             "lng" => 'i18.6986795',
         ];
 
-        (new WebhookValidationMiddleware($this->config))
+        (new EventStreamsWebhookValidationMiddleware($this->config))
             ->process(
                 $this->getServerRequest($queryParams, $this->getSignature($queryParams)),
                 $this->handler
@@ -143,7 +143,7 @@ class WebhookValidationMiddlewareTest extends TestCase
             ->method('handle')
             ->with($request)
             ->willReturn(new TextResponse('Well, hello there.'));
-        $response = (new WebhookValidationMiddleware($this->config))
+        $response = (new EventStreamsWebhookValidationMiddleware($this->config))
             ->process($request, $this->handler);
 
         $this->assertInstanceOf(TextResponse::class, $response);
