@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Settermjd\Mezzio\Twilio\Middleware\Webhook;
+namespace Settermjd\Mezzio\Twilio\Middleware\Webhooks;
 
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
@@ -23,7 +23,7 @@ use function array_key_exists;
  *
  * @see https://www.twilio.com/docs/usage/webhooks/webhooks-security
  */
-readonly final class WebhookValidationMiddleware implements MiddlewareInterface
+readonly final class EventStreamsWebhookValidationMiddleware implements MiddlewareInterface
 {
     public const string HEADER_TWILIO_SIGNATURE = 'X-Twilio-Signature';
 

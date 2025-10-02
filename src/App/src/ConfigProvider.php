@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Settermjd\Mezzio\Twilio;
 
 use Settermjd\Mezzio\Twilio\Factory\TwilioRestClientFactory;
-use Settermjd\Mezzio\Twilio\Middleware\Webhook\WebhookValidationMiddleware;
-use Settermjd\Mezzio\Twilio\Middleware\Webhook\WebhookValidationMiddlewareFactory;
+use Settermjd\Mezzio\Twilio\Middleware\Webhooks\EventStreamsWebhookValidationMiddleware;
+use Settermjd\Mezzio\Twilio\Middleware\Webhooks\EventStreamsWebhookValidationMiddlewareFactory;
 use Twilio\Rest\Client;
 
 class ConfigProvider
@@ -33,8 +33,8 @@ class ConfigProvider
     {
         return [
             'factories' => [
-                Client::class                      => TwilioRestClientFactory::class,
-                WebhookValidationMiddleware::class => WebhookValidationMiddlewareFactory::class,
+                Client::class                                  => TwilioRestClientFactory::class,
+                EventStreamsWebhookValidationMiddleware::class => EventStreamsWebhookValidationMiddlewareFactory::class,
             ],
         ];
     }

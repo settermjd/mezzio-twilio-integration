@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Settermjd\MezzioTest\Twilio\Middleware\Webhook;
+namespace Settermjd\MezzioTest\Twilio\Middleware\Webhooks;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Settermjd\Mezzio\Twilio\Exception\InvalidConfigException;
-use Settermjd\Mezzio\Twilio\Middleware\Webhook\WebhookValidationMiddleware;
-use Settermjd\Mezzio\Twilio\Middleware\Webhook\WebhookValidationMiddlewareFactory;
+use Settermjd\Mezzio\Twilio\Middleware\Webhooks\EventStreamsWebhookValidationMiddleware;
+use Settermjd\Mezzio\Twilio\Middleware\Webhooks\EventStreamsWebhookValidationMiddlewareFactory;
 
-#[CoversClass(WebhookValidationMiddlewareFactory::class)]
-class WebhookValidationMiddlewareFactoryTest extends TestCase
+#[CoversClass(EventStreamsWebhookValidationMiddlewareFactory::class)]
+class EventStreamsWebhookValidationMiddlewareFactoryTest extends TestCase
 {
     public function testCanInstantiateMiddlewareIfConfigIsSetupProperly(): void
     {
@@ -33,9 +33,9 @@ class WebhookValidationMiddlewareFactoryTest extends TestCase
                 ],
             ]);
 
-        $factory = new WebhookValidationMiddlewareFactory();
+        $factory = new EventStreamsWebhookValidationMiddlewareFactory();
 
-        $this->assertInstanceOf(WebhookValidationMiddleware::class, $factory($container));
+        $this->assertInstanceOf(EventStreamsWebhookValidationMiddleware::class, $factory($container));
     }
 
     public function testThrowsExceptionIfConfigServiceIsNotAvailable(): void
@@ -50,9 +50,9 @@ class WebhookValidationMiddlewareFactoryTest extends TestCase
             ->with('config')
             ->willReturn(false);
 
-        $factory = new WebhookValidationMiddlewareFactory();
+        $factory = new EventStreamsWebhookValidationMiddlewareFactory();
 
-        $this->assertInstanceOf(WebhookValidationMiddleware::class, $factory($container));
+        $this->assertInstanceOf(EventStreamsWebhookValidationMiddleware::class, $factory($container));
     }
 
     /**
@@ -100,8 +100,8 @@ class WebhookValidationMiddlewareFactoryTest extends TestCase
             ->with('config')
             ->willReturn($config);
 
-        $factory = new WebhookValidationMiddlewareFactory();
+        $factory = new EventStreamsWebhookValidationMiddlewareFactory();
 
-        $this->assertInstanceOf(WebhookValidationMiddleware::class, $factory($container));
+        $this->assertInstanceOf(EventStreamsWebhookValidationMiddleware::class, $factory($container));
     }
 }

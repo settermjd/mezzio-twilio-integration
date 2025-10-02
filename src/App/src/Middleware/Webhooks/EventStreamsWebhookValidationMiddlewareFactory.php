@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Settermjd\Mezzio\Twilio\Middleware\Webhook;
+namespace Settermjd\Mezzio\Twilio\Middleware\Webhooks;
 
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -13,14 +13,14 @@ use function array_key_exists;
 use function assert;
 use function is_array;
 
-class WebhookValidationMiddlewareFactory
+class EventStreamsWebhookValidationMiddlewareFactory
 {
     /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      * @throws InvalidConfigException
      */
-    public function __invoke(ContainerInterface $container): WebhookValidationMiddleware
+    public function __invoke(ContainerInterface $container): EventStreamsWebhookValidationMiddleware
     {
         if (! $container->has('config')) {
             throw new InvalidConfigException('Container does not have a config service');
@@ -34,7 +34,7 @@ class WebhookValidationMiddlewareFactory
             && array_key_exists('auth_token', $config['twilio'])
             && $config['twilio']['auth_token'] !== ''
         ) {
-            return new WebhookValidationMiddleware($config['twilio']);
+            return new EventStreamsWebhookValidationMiddleware($config['twilio']);
         }
 
         throw new InvalidConfigException('Twilio configuration not set correctly');
