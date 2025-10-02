@@ -17,4 +17,4 @@ composer require settermjd/mezzio-twilio-integration
 Check out [the documentation][the-docs] for full details about how to use the project.
 
 <!-- Links -->
-[the-docs]: https://settermjd.github.io/mezzio-twilio-integration
+[the-docs]: https://settermjd.gitlab.io/mezzio-twilio-integration
