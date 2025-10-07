@@ -10,23 +10,24 @@
     },
     "require": {
         "php": "~8.3||~8.4",
-        "psr/container": "^1.0.0 || ^2.0.0",
-        "psr/http-server-middleware": "^1.0",
-        "twilio/sdk": "^8.8",
-        "vlucas/phpdotenv": "^5.6"
+        "psr/container": "^1.0.0 || ^2.0.2",
+        "psr/http-server-middleware": "^1.0.2",
+        "settermjd/laminas-twilio-phone-number-validator": "^1.4",
+        "twilio/sdk": "^8.8.3",
+        "vlucas/phpdotenv": "^5.6.2"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.21",
-        "friendsofphp/php-cs-fixer": "^3.87",
+        "fakerphp/faker": "^1.24.1",
+        "friendsofphp/php-cs-fixer": "^3.88.2",
         "icanhazstring/composer-unused": "^0.9.5",
         "laminas/laminas-coding-standard": "^3.1",
         "laminas/laminas-component-installer": "^3.5",
         "laminas/laminas-diactoros": "^3.6",
-        "mikey179/vfsstream": "^1.6",
+        "mikey179/vfsstream": "^1.6.12",
         "phpstan/phpdoc-parser": "^2.3",
-        "phpstan/phpstan": "^2.1",
-        "phpstan/phpstan-phpunit": "^2.0",
-        "phpunit/phpunit": "^12.3"
+        "phpstan/phpstan": "^2.1.30",
+        "phpstan/phpstan-phpunit": "^2.0.7",
+        "phpunit/phpunit": "^12.4"
     },
     "config": {
         "allow-plugins": {

@@ -7,6 +7,7 @@ namespace Settermjd\Mezzio\Twilio;
 use Settermjd\Mezzio\Twilio\Factory\TwilioRestClientFactory;
 use Settermjd\Mezzio\Twilio\Middleware\Webhooks\EventStreamsWebhookValidationMiddleware;
 use Settermjd\Mezzio\Twilio\Middleware\Webhooks\EventStreamsWebhookValidationMiddlewareFactory;
+use Settermjd\Validator\VerifyPhoneNumber;
 use Twilio\Rest\Client;
 
 class ConfigProvider
@@ -33,7 +34,6 @@ class ConfigProvider
     {
         return [
             'factories' => [
-                Client::class                                  => TwilioRestClientFactory::class,
                 EventStreamsWebhookValidationMiddleware::class => EventStreamsWebhookValidationMiddlewareFactory::class,
             ],
         ];
